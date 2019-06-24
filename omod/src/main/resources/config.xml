@@ -72,6 +72,7 @@
     <!-- Maps hibernate files, if present -->
     <mappingFiles>
         Condition.hbm.xml
+        Allergy_New.hbm.xml
     </mappingFiles>
 
     <!-- Internationalization -->
@@ -144,6 +145,23 @@
             UUID of non coded concept
         </description>
     </globalProperty>
+    
+     <globalProperty>
+        <property>alergyList.endReasonConceptSetUuid</property>
+        <defaultValue></defaultValue>
+        <description>
+            UUID of end reason concept set
+        </description>
+    </globalProperty>
+
+    <globalProperty>
+        <property>alergyList.nonCodedUuid</property>
+        <defaultValue></defaultValue>
+        <description>
+            UUID of non coded concept
+        </description>
+    </globalProperty>
+    
     <globalProperty>
         <property>emrapi.EmrApiVisitAssignmentHandler.encounterTypeToNewVisitTypeMap</property>
         <defaultValue></defaultValue>
@@ -183,6 +201,16 @@
     <privilege>
         <name>Get conditions</name>
         <description>Able to get conditions</description>
+    </privilege>
+    
+     <privilege>
+        <name>Edit allergies</name>
+        <description>Able to edit allergies</description>
+    </privilege>
+
+    <privilege>
+        <name>Get allergies</name>
+        <description>Able to get allergies</description>
     </privilege>
 
 </module>
