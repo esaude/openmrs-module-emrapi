@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="false">
+    <!-- Plural table name ("allergies") because "allergy" is a MySQL reserved word -->
+    <class name="org.openmrs.module.emrapi.allergy.Allergy_New" table="allergy_New">
+        <id name="allergyId" type="int" column="allergy_id" unsaved-value="0">
+            <generator class="native">
+                <param name="sequence">allergies_allergy_id_seq</param>
+            </generator>
+        </id>
+
+        <discriminator column="allergy_id" insert="false"/>
+
+        <property name="uuid" type="java.lang.String"
+                  column="uuid" length="38" unique="true"/>
+        <property name="status" column="status" length="255" not-null="true">
+            <type name="org.hibernate.type.EnumType">
+                <param name="enumClass">org.openmrs.module.emrapi.allergy.Allergy_New$Status</param>
+                <param name="type">12</param>
+            </type>
+        </property>
+        <property name="allergyNonCoded" type="java.lang.String" column="allergy_non_coded" length="1024"/>
+        <property name="onsetDate" type="java.util.Date" column="onset_date"/>
+        <property name="additionalDetail" type="java.lang.String" column="additional_detail" length="1024"/>
+        <property name="endDate" type="java.util.Date" column="end_date"/>
+        <property name="dateCreated" type="java.util.Date" column="date_created" not-null="true"/>
+        <property name="voided" type="java.lang.Boolean" column="voided"/>
+        <property name="dateVoided" type="java.util.Date" column="date_voided"/>
+        <property name="voidReason" type="java.lang.String" column="void_reason" length="255"/>
+
+        <many-to-one name="previousAllergy" class="org.openmrs.module.emrapi.allergy.Allergy_New"
+                     column="previous_allergy_id"/>
+        <many-to-one name="patient" column="patient_id" class="org.openmrs.Patient" not-null="true"/>
+        <many-to-one name="concept" column="concept_id" class="org.openmrs.Concept" not-null="true"/>
+        <many-to-one name="endReason" column="end_reason" class="org.openmrs.Concept"/>
+        <many-to-one name="creator" class="org.openmrs.User" not-null="true"/>
+        <many-to-one name="voidedBy" class="org.openmrs.User" column="voided_by"/>
+    </class>
+</hibernate-mapping>
+

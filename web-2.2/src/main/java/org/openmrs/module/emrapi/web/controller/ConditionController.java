@@ -9,6 +9,8 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.openmrs.CodedOrFreeText;
 import org.openmrs.Concept;
 import org.openmrs.ConceptName;
@@ -38,7 +40,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 @RequestMapping(value = "/rest/emrapi")
 public class ConditionController extends BaseRestController {
-
+	private Log log = LogFactory.getLog(this.getClass());
 	ConditionMapper conditionMapper = new ConditionMapper();
 
 	ConditionHistoryMapper conditionHistoryMapper = new ConditionHistoryMapper(conditionMapper);
@@ -370,6 +372,7 @@ public class ConditionController extends BaseRestController {
 	@RequestMapping(method = RequestMethod.GET, value = "/conditionhistory")
 	@ResponseBody
 	public List<org.openmrs.module.emrapi.conditionslist.contract.ConditionHistory> getConditionHistory(@RequestParam("patientUuid") String patientUuid) {
+		log.error("conditionhistory2.2222  ##############################################################################");
 		List<org.openmrs.Condition> activeConditions = conditionService.getActiveConditions(patientService.getPatientByUuid(patientUuid));
 
 		return conditionHistoryMapper.map(convertHistory(activeConditions));
@@ -383,7 +386,7 @@ public class ConditionController extends BaseRestController {
 	@RequestMapping(method = RequestMethod.POST, value = "/condition")
 	@ResponseBody
 	public List<org.openmrs.module.emrapi.conditionslist.contract.Condition> save(@RequestBody org.openmrs.module.emrapi.conditionslist.contract.Condition[] conditions) {
-
+log.error("condition# 2.22#############################################################################");
 		List<org.openmrs.module.emrapi.conditionslist.contract.Condition> savedConditions = new ArrayList<org.openmrs.module.emrapi.conditionslist.contract.Condition>();
 
 		for (org.openmrs.module.emrapi.conditionslist.contract.Condition condition : conditions) {

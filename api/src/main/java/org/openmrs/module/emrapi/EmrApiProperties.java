@@ -260,6 +260,19 @@ public class EmrApiProperties extends ModuleProperties {
 		}
 	}
 
+	public Collection<Concept> getAllergySets() {
+		String diagnosisSetsUuid = getGlobalProperty(EmrApiConstants.GP_ALLERGY_SET_OF_SETS, true);
+		if (StringUtils.hasText(diagnosisSetsUuid)) {
+			Concept setOfSets = conceptService.getConceptByUuid(diagnosisSetsUuid);
+			if (setOfSets == null) {
+				throw new IllegalStateException("Configuration required: " + EmrApiConstants.GP_ALLERGY_SET_OF_SETS);
+			}
+			return setOfSets.getSetMembers();
+		} else {
+			return null;
+		}
+	}
+
 	public Collection<Concept> getNonDiagnosisConceptSets() {
 		Collection<Concept> concepts = getConceptsByGlobalProperty(EmrApiConstants.GP_NON_DIAGNOSIS_CONCEPT_SETS);
 
@@ -273,6 +286,19 @@ public class EmrApiProperties extends ModuleProperties {
 
 	public Collection<Concept> getSuppressedDiagnosisConcepts() {
 		return getConceptsByGlobalProperty(EmrApiConstants.GP_SUPPRESSED_DIAGNOSIS_CONCEPTS);
+	}
+
+	public Collection<Concept> getAllergyisSets() {
+		String diagnosisSetsUuid = getGlobalProperty(EmrApiConstants.GP_ALLERGY_SET_OF_SETS, true);
+		if (StringUtils.hasText(diagnosisSetsUuid)) {
+			Concept setOfSets = conceptService.getConceptByUuid(diagnosisSetsUuid);
+			if (setOfSets == null) {
+				throw new IllegalStateException("Configuration required: " + EmrApiConstants.GP_ALLERGY_SET_OF_SETS);
+			}
+			return setOfSets.getSetMembers();
+		} else {
+			return null;
+		}
 	}
 
 	public ConceptMapType getSameAsConceptMapType() {

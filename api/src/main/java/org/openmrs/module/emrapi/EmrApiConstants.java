@@ -117,6 +117,8 @@ public class EmrApiConstants {
     public static final String EMR_CONCEPT_SOURCE_UUID = "edd52713-8887-47b7-ba9e-6e1148824ca4";
 
     public static final String GP_DIAGNOSIS_SET_OF_SETS = "emr.concept.diagnosisSetOfSets";
+    
+    public static final String GP_ALLERGY_SET_OF_SETS = "emr.concept.allergySetOfSets";
 
 	public static final String GP_NON_DIAGNOSIS_CONCEPT_SETS = "emrapi.nonDiagnosisConceptSets";
 

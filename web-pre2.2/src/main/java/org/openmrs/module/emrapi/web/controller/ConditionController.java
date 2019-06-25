@@ -3,6 +3,8 @@ package org.openmrs.module.emrapi.web.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.openmrs.api.ConceptService;
 import org.openmrs.api.PatientService;
 import org.openmrs.module.emrapi.conditionslist.ConditionService;
@@ -22,7 +24,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 @RequestMapping(value = "/rest/emrapi")
 public class ConditionController extends BaseRestController {
-	
+	private Log log = LogFactory.getLog(this.getClass());
 	ConditionMapper conditionMapper = new ConditionMapper();
 	
 	ConditionHistoryMapper conditionHistoryMapper = new ConditionHistoryMapper(conditionMapper);
@@ -44,6 +46,7 @@ public class ConditionController extends BaseRestController {
 	@RequestMapping(method = RequestMethod.GET, value = "/conditionhistory")
 	@ResponseBody
 	public List<ConditionHistory> getConditionHistory(@RequestParam("patientUuid") String patientUuid) {
+		
 		List<org.openmrs.module.emrapi.conditionslist.ConditionHistory> conditionHistory = conditionService.getConditionHistory(
 				patientService.getPatientByUuid(patientUuid));
 		
@@ -53,6 +56,7 @@ public class ConditionController extends BaseRestController {
 	@RequestMapping(method = RequestMethod.POST, value = "/condition")
 	@ResponseBody
 	public List<Condition> save(@RequestBody Condition[] conditions) {
+		
 		List<Condition> savedConditions = new ArrayList<Condition>();
 		for (Condition condition : conditions) {
 			org.openmrs.module.emrapi.conditionslist.Condition savedCondition = conditionService.save(conditionMapper.map(condition));

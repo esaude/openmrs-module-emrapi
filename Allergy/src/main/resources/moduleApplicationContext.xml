@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	
+	
+	<bean id="emrAllergyDAO" class="org.openmrs.module.emrapi.allergy.db.hibernate.HibernateAllergyDAO">
+		<property name="sessionFactory">
+			<ref bean="dbSessionFactory" />
+		</property>
+	</bean>
+	
+	<bean id="emrAllergyService" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+		<property name="transactionManager">
+			<ref bean="transactionManager" />
+		</property>
+		<property name="target">
+			<bean id="emrAllergyServiceTarget" class="org.openmrs.module.emrapi.allergy.impl.AllergyServiceImpl">
+				<constructor-arg index="0" ref="emrAllergyDAO" />
+				<constructor-arg index="1" ref="conceptService" />
+				<constructor-arg index="2" ref="adminService" />
+			</bean>
+		</property>
+		<property name="preInterceptors">
+			<ref bean="serviceInterceptors" />
+		</property>
+		<property name="transactionAttributeSource">
+			<ref bean="transactionAttributeSource" />
+		</property>
+	</bean>
+	
+	<bean id="emrAllergyValidator" class="org.openmrs.module.emrapi.allergy.EmrAllergyValidator">
+		<constructor-arg name="allergyService" ref="emrAllergyService" />
+		<constructor-arg name="administrationService" ref="adminService" />
+	</bean>
+	
+	<bean parent="serviceContext">
+		<property name="moduleService">
+			<list>
+				<value>org.openmrs.module.emrapi.allergy.AllergyService</value>
+				<ref bean="emrAllergyService" />
+			</list>
+		</property>
+	</bean>
+</beans>
