@@ -301,6 +301,19 @@ public class EmrApiProperties extends ModuleProperties {
 		}
 	}
 
+	public Collection<Concept> getConditionisSets() {
+		String diagnosisSetsUuid = getGlobalProperty(EmrApiConstants.GP_CONDITION_SET_OF_SETS, true);
+		if (StringUtils.hasText(diagnosisSetsUuid)) {
+			Concept setOfSets = conceptService.getConceptByUuid(diagnosisSetsUuid);
+			if (setOfSets == null) {
+				throw new IllegalStateException("Configuration required: " + EmrApiConstants.GP_CONDITION_SET_OF_SETS);
+			}
+			return setOfSets.getSetMembers();
+		} else {
+			return null;
+		}
+	}
+
 	public ConceptMapType getSameAsConceptMapType() {
 		return conceptService.getConceptMapTypeByUuid(EmrApiConstants.SAME_AS_CONCEPT_MAP_TYPE_UUID);
 	}

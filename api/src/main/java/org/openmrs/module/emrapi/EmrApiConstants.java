@@ -120,6 +120,8 @@ public class EmrApiConstants {
     
     public static final String GP_ALLERGY_SET_OF_SETS = "emr.concept.allergySetOfSets";
 
+    public static final String GP_CONDITION_SET_OF_SETS = "emr.concept.conditionSetOfSets";
+
 	public static final String GP_NON_DIAGNOSIS_CONCEPT_SETS = "emrapi.nonDiagnosisConceptSets";
 
 	public static final String GP_SUPPRESSED_DIAGNOSIS_CONCEPTS = "emrapi.suppressedDiagnosisConcepts";
