@@ -73,6 +73,7 @@
     <mappingFiles>
         Condition.hbm.xml
         Allergy_New.hbm.xml
+        PatientStatusState.hbm.xml
     </mappingFiles>
 
     <!-- Internationalization -->

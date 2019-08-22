@@ -41,6 +41,7 @@
 	    <module>api-pre2.2</module>
 		<module>web-pre2.2</module>
         <module>Allergy</module>
+    <module>patientStatusState</module>
   </modules>
 
     <properties>

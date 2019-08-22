@@ -83,4 +83,36 @@
         </createIndex>
     </changeSet>
     
+    
+    
+    
+     <changeSet author="Sushant, Patil" id="20190822-0451">
+        <createTable tableName="patient_status_state">
+            <column name="id" type="int" autoIncrement="true" >
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="patient_id" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="patient_state" type="varchar(255)">
+                <constraints nullable="true"/>
+            </column>
+             <column name="patient_status" type="varchar(255)">
+                <constraints nullable="true"/>
+            </column>
+            
+            <column name="creator" type="int">
+                <constraints nullable="true"/>
+            </column>
+            <column name="date_created" type="datetime">
+                <constraints nullable="true"/>
+            </column>
+            <column name="uuid" type="char(38)">
+                <constraints nullable="true"/>
+            </column>
+        </createTable>
+
+    </changeSet>
+    
+    
 </databaseChangeLog>
