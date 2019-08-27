@@ -4,7 +4,6 @@ import java.text.ParseException;
 import java.util.Date;
 
 import org.codehaus.jackson.map.annotate.JsonSerialize;
-import org.patientStatusState.JsonDateSerializer;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;

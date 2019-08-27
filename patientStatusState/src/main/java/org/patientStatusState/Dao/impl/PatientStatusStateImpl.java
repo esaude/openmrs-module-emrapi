@@ -28,11 +28,9 @@ public class PatientStatusStateImpl implements PatientStatusStateDao {
 	public void setSessionFactory(DbSessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
-
-	@Override
-
-	@Transactional
-	public PatientStatusState savePatientStatusState(PatientStatusState patientStatusState) {
+	
+	
+	private PatientStatusState saveToDB(PatientStatusState patientStatusState) {
 		User creator = Context.getUserService().getUserByUuid(patientStatusState.getCreatorUuid());
 		int patient_id = getPatientId(patientStatusState.getPatientUuid());
 		UUID uuid = UUID.randomUUID();
@@ -41,10 +39,30 @@ public class PatientStatusStateImpl implements PatientStatusStateDao {
 		patientStatusState.setCreator(creator.getId());
 		sessionFactory.getCurrentSession().save(patientStatusState);
 		return patientStatusState;
+		
 	}
 
 	@Override
+	@Transactional
+	public PatientStatusState savePatientStatusState(PatientStatusState patientStatusState) {
+		PatientStatusState returnObj = null;
+		List<PatientStatusState> existingRecords =  getPatientStatusState(patientStatusState.getPatientUuid());
+		
+		if (existingRecords.size() > 0) {
+			PatientStatusState existingRecord = getPatientStatusState(patientStatusState.getPatientUuid()).get(0);
+			if(!existingRecord.getPatient_state().equals(patientStatusState.getPatient_state()) || !existingRecord.getPatient_status().equals(patientStatusState.getPatient_status())) {
+				returnObj = saveToDB(patientStatusState);
+				return returnObj;
+			}
+			else {
+				return patientStatusState;
+			}
+		}
+		returnObj = saveToDB(patientStatusState);
+		return returnObj;
+	}
 
+	@Override
 	@Transactional(readOnly = true)
 	public List<PatientStatusState> getPatientStatusState(String patientUUID) {
 		int patient_id = getPatientId(patientUUID);
