@@ -10,15 +10,15 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 public class PatientStatusState {
 	
-	int id;
-	int patient_id;
-	String patient_state;
-	String patient_status;
-	int creator;
-	Date date_created;
-	String uuid;
-	String patientUuid;
-	String creatorUuid;
+	private int id;
+	private int patient_id;
+	private String patient_state;
+	private String patient_status;
+	private int creator;
+	private Date date_created;
+	private String uuid;
+	private String patientUuid;
+	private String creatorUuid;
 	
 
 	
