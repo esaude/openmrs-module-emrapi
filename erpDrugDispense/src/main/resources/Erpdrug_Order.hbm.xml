@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="false">
+    <!-- Plural table name ("DispenseDrug Order ") because "allergy" is a MySQL reserved word -->
+    <class name="org.openmrs.module.emrapi.erpdrug_order.Erpdrug_Order" table="erpdrug_order">
+        <id name="id" type="int" column="id" unsaved-value="0">
+           <generator class="native">
+              <param name="sequence">id_seq</param>
+          </generator>
+       </id>
+        <property name="order_id" type="int" column="order_id" />
+        <property name="patient_id" type="int" column="patient_id" />
+        <property name="status" type="java.lang.String" column="status"  length="1024"/>     
+        <property name="dispensed" type="boolean" column="dispensed" length="1"  />
+        <property name="arv_dispensed" type="boolean" column="arv_dispensed" length="1"  />
+        <property name="first_arv_dispensed" type="boolean" column="first_arv_dispensed" length="1"  />
+        <property name="dispensed_date" type="java.util.Date" column="dispensed_date" length="19"/>
+        <property name="encounter_id" type="int" column="encounter_id" />
+        <property name="location_id" type="int" column="location_id" />
+        <property name="creator" type="int" column="creator" />
+        <property name="date_created" type="java.util.Date" column="date_created"/>
+        <property name="uuid" type="java.lang.String" column="uuid" length="38" unique="true"/>
+ 
+    </class>
+</hibernate-mapping>
