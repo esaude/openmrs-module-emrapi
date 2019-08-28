@@ -74,6 +74,7 @@
         Condition.hbm.xml
         Allergy_New.hbm.xml
         PatientStatusState.hbm.xml
+        Erpdrug_Order.hbm.xml
     </mappingFiles>
 
     <!-- Internationalization -->
