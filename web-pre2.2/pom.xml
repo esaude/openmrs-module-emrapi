@@ -49,6 +49,13 @@
 			<version>${project.parent.version}</version>
 			<scope>compile</scope>
 		</dependency>
+    
+    <dependency>
+			<groupId>${project.parent.groupId}</groupId>
+			<artifactId>${project.parent.artifactId}-patientStatusState</artifactId>
+			<version>${project.parent.version}</version>
+			<scope>compile</scope>
+		</dependency>
 
 		<dependency>
 			<groupId>org.openmrs.web</groupId>

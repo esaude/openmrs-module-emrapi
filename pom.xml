@@ -42,9 +42,10 @@
 		<module>omod</module>
 		<module>api-pre2.2</module>
 		<module>web-pre2.2</module>
-		<module>Allergy</module>
-		<module>erpDrugDispense</module>
-	</modules>
+    <module>Allergy</module>
+    <module>erpDrugDispense</module>
+    <module>patientStatusState</module>
+  </modules>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

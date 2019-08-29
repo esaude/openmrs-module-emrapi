@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="false">
+    <!-- Plural table name ("allergies") because "allergy" is a MySQL reserved word -->
+    <class name="org.openmrs.module.emrapi.patientStatusState.model.PatientStatusState" table="patient_status_state">
+        <id name="id" type="int" column="id" unsaved-value="0">
+        	<generator class="native">
+               <param name="sequence">id_seq</param>
+           </generator>
+        </id>
+        <property name="patient_id" type="int" column="patient_id" />
+        <property name="patient_state" type="java.lang.String" column="patient_state"  length="1024"/>  
+        <property name="patient_status" type="java.lang.String" column="patient_status"  length="1024"/>     
+        <property name="creator" type="int" column="creator" />
+        <property name="date_created" type="java.util.Date" column="date_created"/>
+        <property name="uuid" type="java.lang.String" column="uuid" length="38" unique="true"/>
+      
+    </class>
+</hibernate-mapping>
+

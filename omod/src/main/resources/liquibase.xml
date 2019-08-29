@@ -82,7 +82,7 @@
             <column name="uuid"/>
         </createIndex>
     </changeSet>
-    
+
     <changeSet author="Sushant, Patil" id="20190828-1309">
         <createTable tableName="erpdrug_order">
        		<column name="id" type="int" autoIncrement="true" >
@@ -94,7 +94,7 @@
             <column name="patient_id" type="int">
                 <constraints nullable="false"/>
             </column>
-            <column name="status" type="varchar(255)">
+          <column name="status" type="varchar(255)">
                 <constraints nullable="true"/>
             </column>
             <column name="dispensed" type="boolean">
@@ -105,6 +105,33 @@
             <column name="dispensed_date" type="datetime"/>
             <column name="encounter_id" type="int"/>
             <column name="location_id" type="int"/>
+          <column name="creator" type="int">
+                <constraints nullable="true"/>
+            </column>
+            <column name="date_created" type="datetime">
+                <constraints nullable="true"/>
+            </column>
+            <column name="uuid" type="char(38)">
+                <constraints nullable="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+      <changeSet author="Krishnan, Menon" id="20190822-04569">
+        <createTable tableName="patient_status_state">
+            <column name="id" type="int" autoIncrement="true" >
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="patient_id" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="patient_state" type="varchar(255)">
+                <constraints nullable="true"/>
+            </column>
+             <column name="patient_status" type="varchar(255)">
+                <constraints nullable="true"/>
+            </column>
+            
             <column name="creator" type="int">
                 <constraints nullable="true"/>
             </column>
@@ -117,5 +144,5 @@
         </createTable>
 
     </changeSet>
-    
+            
 </databaseChangeLog>
