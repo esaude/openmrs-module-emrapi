@@ -117,7 +117,7 @@
         </createTable>
     </changeSet>
 
-      <changeSet author="Krishnan, Menon" id="20190822-0451">
+      <changeSet author="Krishnan, Menon" id="20190822-04569">
         <createTable tableName="patient_status_state">
             <column name="id" type="int" autoIncrement="true" >
                 <constraints primaryKey="true" nullable="false"/>
