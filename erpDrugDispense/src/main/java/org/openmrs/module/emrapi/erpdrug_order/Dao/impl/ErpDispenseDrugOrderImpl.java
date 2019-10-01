@@ -38,10 +38,11 @@ public class ErpDispenseDrugOrderImpl implements ErpDispenseDrugOrderDao {
 		 */
 
 		Query query = sessionFactory.getCurrentSession().createQuery(
-				"from org.openmrs.module.emrapi.erpdrug_order.Erpdrug_Order a where a.patient_id=:patient_id and a.first_arv_dispensed=:first_arv_dispensed");
+				"from org.openmrs.module.emrapi.erpdrug_order.Erpdrug_Order a where a.patient_id=:patient_id and a.first_arv_dispensed=:first_arv_dispensed and a.arv_dispensed=:arv_dispensed");
 		query.setInteger("patient_id", patient_id);
 		query.setBoolean("first_arv_dispensed", true);
-
+		query.setBoolean("arv_dispensed", true);
+		
 		return query.list();
 
 	}
